@@ -10,6 +10,11 @@
 
 // 3. Function to get players choice
 
+    // prompt user for a valid choice
+    function getPlayerChoice() {
+        return prompt('Pick 1: rock, paper, or scissors');
+    }
+
 // 4. Declare the players score variables
 
 // 5. Write logic to play single round
