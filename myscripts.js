@@ -17,6 +17,11 @@
 
 // 4. Declare the players score variables
 
+    // playerScore
+    let playerScore = 0;
+    // computerScore
+    let computerScore = 0;
+
 // 5. Write logic to play single round
 
 // 6. Write logic to play the entire game
