@@ -23,9 +23,20 @@
 
     // playRound
     function playRound(playerChoice, computerChoice) {
-        
+        if (playerChoice == computerChoice) {
+            console.log(`Tie! Both picked ${playerChoice}`)
+        } else if ((playerChoice == 'rock' && computerChoice == 'scissors') ||
+            (playerChoice == 'paper' && computerChoice == 'rock') ||
+            (playerChoice == 'scissors' && computerChoice == 'paper')) {
+                console.log(`You win! ${playerChoice} beats ${computerChoice}`)
+            } else {
+                console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
+            }
     }
 
+    const playerSelection = getPlayerChoice().toLowerCase();
+    const computerSelection = getComputerChoice();
 
+    playRound(playerSelection, computerSelection);
 
 // 6. Write logic to play the entire game
