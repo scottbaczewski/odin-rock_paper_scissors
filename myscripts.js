@@ -27,26 +27,30 @@
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
+    let round = 0;
+    
     function playRound(playerChoice, computerChoice) {
         if (playerChoice == computerChoice) {
             console.log(`Tie! Both picked ${playerChoice}`);
         } else if ((playerChoice == 'rock' && computerChoice == 'scissors') ||
             (playerChoice == 'paper' && computerChoice == 'rock') ||
             (playerChoice == 'scissors' && computerChoice == 'paper')) {
-                console.log(`You win! ${playerChoice} beats ${computerChoice}`);
                 playerScore++;
+                round++;
+                console.log(`You win! ${playerChoice} beats ${computerChoice}`);
             } else {
-                console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
                 computerScore++;
+                round++;
+                console.log(`You lose! ${computerChoice} beats ${playerChoice}`);
             }
     }
-    const playerSelection = getPlayerChoice().toLowerCase();
-    const computerSelection = getComputerChoice();
+    
 
-    for (let i = 0; i < 5; i++) {
-        let round = i + 1;
-        playRound(getComputerChoice(), getPlayerChoice());
-        console.log(`PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
+    for (; round < 5;) {
+        let playerSelection = getPlayerChoice().toLowerCase();
+        let computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+        console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
     }  
     if (playerScore >= 3) {
         console.log(`You won the game ${playerScore} to ${computerScore}!`);
