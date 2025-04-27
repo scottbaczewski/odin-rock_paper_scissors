@@ -46,14 +46,30 @@ function playGame() {
     }
     
 
-    for (; round < 5;) {
-        let playerSelection = getPlayerChoice().toLowerCase();
-        let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-        console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
-    }  
-    if (playerScore >= 3) {
-        console.log(`You won the game ${playerScore} to ${computerScore}!`);
-    } else console.log(`The computer won the game ${computerScore} to ${playerScore}!`);
+    // for (; round < 5;) {
+    //     let playerSelection = getPlayerChoice().toLowerCase();
+    //     let computerSelection = getComputerChoice();
+    //     playRound(playerSelection, computerSelection);
+    //     console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
+    // }  
+    // if (playerScore >= 3) {
+    //     console.log(`You won the game ${playerScore} to ${computerScore}!`);
+    // } else console.log(`The computer won the game ${computerScore} to ${playerScore}!`);
+
+
+const rock = document.querySelector('button.rock');
+const paper = document.querySelector('button.paper');
+const scissors = document.querySelector('button.scissors');
+
+rock.addEventListener("click", () => {
+    playRound('rock', getComputerChoice())
+});
+paper.addEventListener("click", () => {
+    playRound('paper', getComputerChoice())
+});
+scissors.addEventListener("click", () => {
+    playRound('scissors', getComputerChoice())
+});
+
 }
 playGame()
