@@ -1,17 +1,29 @@
 // 2. Function that randomly returns “rock”, “paper” or “scissors”
 
     // declare choices
-    const choices = ['rock', 'paper', 'scissors'];
+const choices = ['rock', 'paper', 'scissors'];
 
-    const rock = document.querySelector('button.rock');
-    const paper = document.querySelector('button.paper');
-    const scissors = document.querySelector('button.scissors');
-    const results = document.querySelector('div.results');
+const rock = document.querySelector('button.rock');
+const paper = document.querySelector('button.paper');
+const scissors = document.querySelector('button.scissors');
+const results = document.querySelector('div.results');
+const runningScore = document.querySelector('div.runningScore');
+const winner = document.querySelector('div.winner');
 
-    // function to randomly return choice
-    function getComputerChoice() {
-        return choices[Math.floor(Math.random() * choices.length)];
-    }
+// function to randomly return choice
+
+function getPlayerChoice() {
+    rock.addEventListener("click", () => {
+        return 'rock'});
+    paper.addEventListener("click", () => {
+        return 'paper'});
+    scissors.addEventListener("click", () => {
+        return 'scissors'});
+}
+
+function getComputerChoice() {
+    return choices[Math.floor(Math.random() * choices.length)];
+}
 
 // 3. Function to get players choice
 
@@ -29,16 +41,12 @@ function playGame() {
     let round = 0;
     let roundOutput = '';
 
-    function getPlayerChoice() {
-        rock.addEventListener("click", () => {
-            return 'rock'});
-        paper.addEventListener("click", () => {
-            return 'paper'});
-        scissors.addEventListener("click", () => {
-            return 'scissors'});
-    }
+    let p_runningScore = document.createElement('p');
     
+
     function playRound(playerChoice, computerChoice) {
+    p_runningScore.textContent = `Player Score: ${playerScore}, Computer Score: ${computerScore}`;
+    runningScore.appendChild(p_runningScore);
         if (playerChoice == computerChoice) {
             roundOutput = `Tie! Both picked ${playerChoice}`;
         } else if ((playerChoice == 'rock' && computerChoice == 'scissors') ||
@@ -52,9 +60,9 @@ function playGame() {
                 round++;
                 roundOutput = `You lose! ${computerChoice} beats ${playerChoice}`;
             }
-            let p = document.createElement('p');
-            p.textContent = roundOutput;
-            results.appendChild(p);
+            let p_roundOutput = document.createElement('p');
+            p_roundOutput.textContent = roundOutput;
+            results.appendChild(p_roundOutput);
     }
     
 
@@ -64,9 +72,11 @@ function playGame() {
         playRound(playerSelection, computerSelection);
         console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
     }  
+    let p_winner = document.createElement('p');
     if (playerScore >= 3) {
-        console.log(`You won the game ${playerScore} to ${computerScore}!`);
-    } else console.log(`The computer won the game ${computerScore} to ${playerScore}!`);
+        p_winner.textContent = `You won the game ${playerScore} to ${computerScore}!`;
+    } else p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
+    winner.appendChild(p_winner);
 
 }
 playGame()
