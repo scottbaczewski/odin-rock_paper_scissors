@@ -81,8 +81,9 @@ function endGame() {
     if (playerScore >= 5) {
         p_winner.textContent = `You won the game ${playerScore} to ${computerScore}!`;
         winner.appendChild(p_winner);
-    } else if (computerScore >= 5) {p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
-    winner.appendChild(p_winner);
+    } else if (computerScore >= 5) {
+        p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
+        winner.appendChild(p_winner);
     } else {
         p_winner.textContent = '';
     }
