@@ -12,19 +12,19 @@ const winner = document.querySelector('div.winner');
 
 // function to randomly return choice
 
-function getPlayerChoice() {
-    rock.addEventListener("click", () => {
-        return 'rock'});
-    paper.addEventListener("click", () => {
-        return 'paper'});
-    scissors.addEventListener("click", () => {
-        return 'scissors'});
-}
-
 function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function getPlayerChoice() {
+    rock.addEventListener("click", () => {
+        playRound('rock', getComputerChoice())});
+    paper.addEventListener("click", () => {
+        playRound('paper', getComputerChoice())});
+    scissors.addEventListener("click", () => {
+        playRound('scissors', getComputerChoice())});
+}
+getPlayerChoice()
 // 3. Function to get players choice
 
 // 4. Declare the players score variables
@@ -35,7 +35,7 @@ function getComputerChoice() {
     
 // 6. Write logic to play the entire game
 
-function playGame() {
+// function playGame() {
     let playerScore = 0;
     let computerScore = 0;
     let round = 0;
@@ -45,8 +45,6 @@ function playGame() {
     
 
     function playRound(playerChoice, computerChoice) {
-    p_runningScore.textContent = `Player Score: ${playerScore}, Computer Score: ${computerScore}`;
-    runningScore.appendChild(p_runningScore);
         if (playerChoice == computerChoice) {
             roundOutput = `Tie! Both picked ${playerChoice}`;
         } else if ((playerChoice == 'rock' && computerChoice == 'scissors') ||
@@ -60,23 +58,35 @@ function playGame() {
                 round++;
                 roundOutput = `You lose! ${computerChoice} beats ${playerChoice}`;
             }
+            p_runningScore.textContent = `Round: ${round}, Player Score: ${playerScore}, Computer Score: ${computerScore}`;
+            runningScore.appendChild(p_runningScore);
             let p_roundOutput = document.createElement('p');
             p_roundOutput.textContent = roundOutput;
             results.appendChild(p_roundOutput);
+        if (playerScore >= 3 || computerScore >= 3) {
+            endGame();
+        }
     }
     
 
-    for (; round < 5;) {
-        let playerSelection = getPlayerChoice();
-        let computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-        console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
-    }  
+    // for (; round < 5;) {
+    //     let playerSelection = getPlayerChoice();
+    //     let computerSelection = getComputerChoice();
+    //     playRound(playerSelection, computerSelection);
+    //     console.log(`Round: ${round}, PlayerScore: ${playerScore}, ComputerScore: ${computerScore}`)
+    // }  
+
+function endGame() {
     let p_winner = document.createElement('p');
     if (playerScore >= 3) {
         p_winner.textContent = `You won the game ${playerScore} to ${computerScore}!`;
-    } else p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
+        winner.appendChild(p_winner);
+    } else if (computerScore >= 3) {p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
     winner.appendChild(p_winner);
-
+    } else {
+        p_winner.textContent = '';
+    }
 }
-playGame()
+
+// }
+// playGame()
