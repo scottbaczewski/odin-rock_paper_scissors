@@ -63,7 +63,7 @@ getPlayerChoice()
             let p_roundOutput = document.createElement('p');
             p_roundOutput.textContent = roundOutput;
             results.appendChild(p_roundOutput);
-        if (playerScore >= 3 || computerScore >= 3) {
+        if (playerScore >= 5 || computerScore >= 5) {
             endGame();
         }
     }
@@ -78,10 +78,10 @@ getPlayerChoice()
 
 function endGame() {
     let p_winner = document.createElement('p');
-    if (playerScore >= 3) {
+    if (playerScore >= 5) {
         p_winner.textContent = `You won the game ${playerScore} to ${computerScore}!`;
         winner.appendChild(p_winner);
-    } else if (computerScore >= 3) {p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
+    } else if (computerScore >= 5) {p_winner.textContent = `The computer won the game ${computerScore} to ${playerScore}!`;
     winner.appendChild(p_winner);
     } else {
         p_winner.textContent = '';
